@@ -1,0 +1,41 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "openlist-work",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-08-16",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "vars": {
+    // D1数据库配置 =====================================
+    "ENABLE_D1": true, // D1 是否启用，启用需要配置SQL信息
+    "REMOTE_D1": ""    // D1 远程地址，默认不填使用ENV绑定
+    /* D1 Database 配置指南 ==============================
+    local:// # 不填或为local:使用本地数据库：c.env.D1_DATA
+    mysql://<username>:<password>@<host>:<port>/<database>
+    maria://<username>:<password>@<host>:<port>/<database>
+    pgsql://<username>:<password>@<host>:<port>/<database>
+    =================================================== */
+
+
+  },
+  // 静态资源配置 =====================================
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  }
+  // 临时注释掉KV和D1配置以便开发服务器能正常启动
+  /*
+  , "kv_namespaces": [{ // <-------KV 数据库配置-------->
+      "binding": "KV_DATA",// <---------请勿修改--------->
+      "id": "f7126a7c59534d9eb135d11ce91599e8" // <----修改为你创建的Cloudflare KV数据库ID
+  }],"d1_databases": [{  // <-------D1 数据库配置-------->
+      "binding": "D1_DATA",// <---------请勿修改--------->
+      "database_name": "openlist-prod-db", // <----修改为你CF D1数据库名称
+      "database_id": "18095d9d-f6e8-4a9d-9527-e8988e6b44ef"    // <----修改为你CF D1数据库UUID
+  }], "observability": { // <-------CF 日志配置项-------->
+     "enabled": false,       // 开启日志，如果需调试可以开
+     "head_sampling_rate": 1 // <--------请勿修改-------->
+   }
+   */
+}
